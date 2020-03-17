@@ -1,0 +1,18 @@
+# Seradit vsechny umelce podle delky jejich jmena (soliste maji 'first name' a 'last name').
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX s: <http://hanify.cz/schema#>
+
+SELECT ?n
+WHERE {
+  {
+?a rdf:type s:Artist;
+   s:name ?n.
+    FILTER(!isblank(?n))
+}UNION{
+?a rdf:type s:Artist;
+s:name [s:first ?f; s:last ?l].
+    BIND (concat(?f," ",?l) as ?n).
+  }
+}
+ORDER BY strlen(?n)

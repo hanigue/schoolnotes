@@ -1,0 +1,306 @@
+Zkouška 22.1.2020
+
+Teorie
+--------
+RDF
+--------
+1 Predicates can only contain IRIs then blank nodes aren't permitted
+FALSE
+
+2 Only relative IRIs can be used in rdf triples
+FALSE
+
+3 Blank noded have only local validity
+TRUE
+
+4 IRIs must be relative
+FALSE - must be absolute with optional fragment identifiers
+
+5 RDF statements can be remade into directed labeled multigraph for all its subjects and objects (?)
+?? TRUE - cely data model RDF je directed labeled multigraph
+
+--------
+XQuery
+--------
+1 Existencial comparisons expect both operands are evaluated in singleton sequences
+FALSE - both the operands can be evaluated to sequences of values of any length
+
+2 Sequence returns an empty sequence when at least 1 operand is an empty sequence (?? was i on drugs)
+?? - value comparison: Empty sequence () is returned when at least one operand is evaluated to an empty sequence
+
+3 != is true iff at least 1 pair of individual values satisfies traditional inequality
+?TRUE - general comparisons - the result is true if and only if there exists at least one pair of
+individual values satisfying the given relationship 
+
+4 Nodes are atomized to strings with concatenated values of text and attribute noded they contain in a document order
+FALSE - atomizace neobsahuje atributy
+
+5 Atomization of values take place automatically during comparisons
+TRUE
+
+--------
+CAP
+--------
+1. It is not possible to have a distributed system that would guarantee CAP tolerance at the same time (only 1 property out of 3 can be enforced)
+FALSE, 2 can be enforced
+
+2. Consistency requires read and write operations to be executed atomatically.
+TRUE
+
+3. Availability property is breached in case a failing node is not able to successfully receive user requests
+asi FALSE? musi successnout u NON-FAILING nodu, u failing nemuze successnout
+
+4 Arbitrarily mnoho messages can be lost when partition tolerance is guaranteed
+TRUE
+
+5 Partition tolerance is necessary to be guaranteed in clusters since it difficult to detect network failure
+TRUE
+
+--------
+Mapreduce
+--------
+1 Input files are parsed so individual input records are extracted
+asi TRUE
+
+2 Arbitrary number of intermediate key-value pairs can be emitted during mapping for a given input record
+melo by byt TRUE - u toho MapReduce co dela word count se pro jeden string generoval par pro kazdy slovo
+
+3 During shuffling, intermediate key-val pairs are grouped and sorted according to values
+FALSE - sorted podle keys, duh
+
+4 Each reducer must retrieve all emitted key-val pairs from mappers regardless of their keys
+nevim, co mysli tim 'regardless their keys', ale TRUE - reduce se pousti pro kazdy intermed. key
+
+--------
+Riak
+--------
+1 Riak ring (160-bit integer space) is split into equally sized disjoint partitions each associated with a particular node
+TRUE
+
+2 Hash function is consistent and only depends on bucket names and object keys
+TRUE
+
+3 Position of the 1st replica is directly determined by values of hash function
+TRUE
+
+4 When none of the involved nodes is failing, all the remaining replicas are placed to consecutive partitions in a clockwise direction
+TRUE
+
+5 When even one of the nodes where replicas should be placed is failing, entire write user request will have to be rejected (cannot successfully execute)
+FALSE
+
+--------
+Redis
+--------
+1 Objects within one redis instance are organized into numbered databases
+TRUE - 'Databases do not have names but integer identifiers'
+
+2 Sorted set is an alfabeticly sorted set of strings
+FALSE - order je dan pomoci skore
+
+3 Hash is an associative mapping from strings to strings
+TRUE - between string fields and string values
+
+4 Volatile and still existing object with ttl set can be made persistent once again
+TRUE - prikaz PERSIST
+
+--------
+Mongo
+--------
+1 Document in each collection must conform to a schema written in json schema lang
+FALSE
+
+2 Primary keys are immutable only when json arrays are used
+asi FALSE? PK jsou immutable, ale PK NESMI BYT array
+
+3 Primary keys must be unique with each collection
+TRUE
+
+4 Names of top level fields can't start with underscores
+FALSE
+
+5 Denormalized data (embedded documents or sub-documents) models are suitable for many-to-many relationships since they prevent from redundancies
+FALSE - naopak, u 1:M a 1:1
+
+--------
+Neo4j
+--------
+1 Traverser allows us to iterate over all found relationships
+TRUE
+
+2 Each well formed traversal description must contain at least 1 expander
+FALSE - when none is provided, then all the relationships are permited
+
+3 NODE_GLOBAL uniquebess level is more restricting than NODE_PATH
+TRUE - GLOBAL rika, ze v celym traversalu muze byt node jen jednou, PATH rika ze jenom v dane ceste
+
+4 Evaluators are applied on starting nodes as well
+TRUE - jsou tam konstanty pro specifikovani, jestli se ma startovaci node vynechat atp.
+
+5 When multiple evaluators are provided, the overall outcome will be positive (INCLUDE and CONTINUE respectively) iff they all agree on these positive answers
+TRUE
+
+----------------
+Data and graphs (predposledni prednaska)
+----------------
+1 Bandwidth minimization problem in adjacency matrixes is NP-hard
+TRUE
+
+2 Bandwith of a matrix equals to average bandwith of individual rows
+FALSE, Bandwidth of a matrix = maximum of the bandwidth of its rows
+
+3 Cuthill-Mckee algorithm always prefers nodes with higher degrees
+FALSE - preferuje smallest
+
+4 Cuthill-Mckee alg uses BFS traversal
+TRUE
+
+5 Adjacency matriced with small bandwiths are more cache friendly
+TRUE
+
+------------
+Transaction (posledni prednaska)
+------------
+1 Business transaction is defined as a sequence of system transactions
+TRUE
+
+2 Overwriting comitted data (blind write) or reading comitted data (dirty read) are typical issues of not just offline transactional processing
+??
+
+3 Optimistic offline locking protocols rely in precommit validation and are suitable when conflicts do not occur frequently
+TRUE
+
+4 Implicit locks allow us to efficiently lock multiple db objects at the same time
+?? - implicit locks rikaji, ze maji locks byt obdrzeny automaticky aplikaci, ne specifikovany natvrdo vyvojarem
+
+5 Deadlocks are not an issue in case of pessimitic locking protocol since only shared and not exclusive locks are used
+FALSE - nejsou issue, protoze se pouziva JENOM exclusive, ktery dovoli provadet vzdy jen 1 transakci
+----------------
+Praktická
+Nevim, co je dobre/spatne, ale je to za 44 bodů
+
+XQuery
+--------------------------------------------------------------------------
+Express an XQuery query statement that constructs an XHTML table according to the following pattern. Include table heading (just once), create separate table row for each line. Put the following records into individual table columns: line name (attribute route), discount (e.g. 25 %) of the very first fare (if any, otherwise element <i> Unknown </i>), and a number of connections a given line has. Sort all the selected lines with respect to their lengths in descending order, and then their names in ascending order. Return only lines where there is no connection on Tuesday (TUE). Ignore all the other lines.
+--------------------------------------------------------------------------
+
+<table>
+<tr><th>Line</th><th>Fare</th><th>Connections</th></tr>
+{
+for $l in //line
+where every $c in $l/connection satisfies $c[@day != "TUE"]
+order by $l/@distance descending, $l/@route ascending
+return
+<tr>
+<td>{ $l/data(@route) }</td>
+<td>{ if ($l/fare) then $l/fare[1]/text() else <i>Unknown</i> }</td>
+<td>{ count($l/connection) }</td>
+</tr>
+}
+</table>
+
+---
+
+SPARQL
+
+--------------------------------------------------------------------------
+Let us have the following RDF graph with identifier <http://tickets.cz>:
+
+@prefix rdf: <http://somefancyurl-rdf-syntax-ns#> .
+@prefix t: <http://tickets.cz> .
+t:line1 rdf:type t:Line; t:route "Praha - Liberec"; t:distance "100" ;
+	t:fare "adult" ; t:discount "0 %";
+
+t:line1 t:connection [ t:from "Liberec" ; t:day "MON" ; t:time "10:00" ],
+					 [ t:from "Praha" ; t:day "MON" ; t:time "12:00" ] .
+t:line2 rdf:type t:Line ; t:route "Praha - Brno"; t:distance "210" ; t:type "train" .
+t:line3 rdf:type t:Line; t:route "Praha - Plzen" ; t:distance "95" ; t:type "coach" ; t:fare "student" ; :t:discount "50 %" ;
+t:connection _:connection 1.
+
+_connection1 t:from "Plzen" ; t:day "TRUE" ; t:time "8:00"
+
+Express a SPARQL query statement that finds all lines where there is no connection on Tuesday (TUE). Return a line name (attribute route) and length for each such line. Try to find an optional fare discount (each line always has at most one fare) and analogously, an optional line type (e.g. coach) as well. Sort all selected lines with respect to their lengths in descending order, their names in ascending order. Ignore lines shorter than 100 or longer than 200 kilometers.
+
+--------------------------------------------------------------------------
+PREFIX rdf: <<http://somefancyurl-rdf-syntax-ns#>>
+PREFIX t: <https://tickets.cz/>
+
+SELECT ?r ?len ?d ?t
+WHERE
+{
+?l rdf:type t:Line ;
+  t:route ?r ;
+  t:distance ?len .
+OPTIONAL {?l t:discount ?d} .
+OPTIONAL {?l t:type ?t} .
+OPTIONAL {
+?l t:connection [t:day ?tue] .
+FILTER(?tue = "TUE")
+} .
+FILTER(?d >= 100 && ?d <= 200 && !bound(?tue))
+}
+ORDER BY DESC(?len) ASC(?r)
+
+---
+
+MongoDB
+--------------------------------------------------------------------------
+Let us have the following three JSON documents in a collection ticket of MONGODB database.
+
+{
+	_id: "line1", route: "Praha-Liberec", distance:"100",
+	connections: { {from: "Liberec", day: "MON", time: "10:00"},{from: "Praha", day: "MON", time: "12:00"} },
+	fare: {type: "adult", discount: "0%", note: "Passengers over 15 years"}
+}
+
+{
+	_id: "line2", route: "Praha-Brno", distance: "210", type: "train", fare: {discount: "25%", type: "student" }
+}
+
+{
+	_id: "line3", route: "Praha - Plzen", distance: "95", type: "coach".
+	connection: [ {from: "Plzen", day: "TUE", time: "8:00"} ],
+	fare: [ {type: "student", discount: "50%"}, {discount: "25%", type: "adult"}]
+}
+
+Express a query statement that finds all lines where there is a student fare with 25% discount. For each such line return only a line name (attribute route), length in a number of kilometers and at most, last 2 connections. Sort all selected lines with respect to their lengths in desc order, their names in ascending order. Include only lines with length from 100 to 200 kilometers (including both boundaries) such that they have at least one connection.
+--------------------------------------------------------------------------
+
+db.tickets.find(
+	{
+	"fare.type": "student", "fare.discount": "25%",
+	distance: { $gte: 100, $lte: 200 },
+	connections: { $exists: true, $ne: [] }
+	},
+	{ route: 1, _id: 0, distance: 1, connections: { $slice: -2 } }
+).sort(
+	{ distance: -1, route: 1 }
+);
+
+---
+
+Cypher (Neo4j)
+
+--------------------------------------------------------------------------
+Suppose we have the following Neo4j graph:
+
+(t1:LINE {route: "Praha - Liberec", distance: 100} ),
+(t1)-[:TARIFF]->(:FARE {type: "adult", discount: "0%"}),
+(t1)-[:CONNECTION]->(:COACH {from: "Liberec", day: "MON", time: "10:00"}),
+(t1)-[:CONNECTION]->(:COACH {from: "Praha", day: "MON", time: "12:00"}),
+(t2:LINE {route: "Praha-Brno", distance: 210}),
+(t3:LINE {route: "Praha-Plzen", distance: 95}),
+(t3)-[:TARIFF]->(:FARE {type: "student", discount: "50%"}),
+(t3)-[:CONNECTION]->(:COACH {from: "Plzen", day: "TUE", time: "08:00"});
+
+Express a Cypher query statement that finds all lines with above average length in a number of kilometers. Return a line name (attribute route) and length fr each such line. Try to find an optional fare discount (each line always has at most one fare). Sort selected lines with respect to their lengths in descending order, names in ascending. Include only lines where there is no connection on TUE. Always check node labels and types and directions of relationships whenever possible.
+
+--------------------------------------------------------------------------
+MATCH (l:LINE)
+OPTIONAL MATCH (l)-[:TARIFF]->(f:FARE)
+OPTIONAL MATCH (l)-[:CONNECTION]->(tue:COACH { day: "TUE" })
+WITH AVG(distance) as mean
+WHERE (l.distance < mean)
+AND tue is NULL
+RETURN l.route, l.distance, f.discount
+ORDER BY l.distance DESCENDING, l.route ASCENDING;

@@ -1,0 +1,15 @@
+# Vybrat artists (odkaz na ne), kteri maji vice nez 1 pisnicku.
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX s: <http://hanify.cz/schema#>
+
+SELECT (count(?song) as ?numberOfSongs) ?a
+WHERE {
+?a rdf:type s:Artist.
+  OPTIONAL{
+   ?b s:from ?a.
+   ?song s:contain ?b.
+  }
+}
+GROUP BY ?a
+HAVING (?numberOfSongs > 1)

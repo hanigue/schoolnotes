@@ -1,0 +1,123 @@
+<hanify>
+  <artists>    
+    <artist id="TW201015" debut="2015">
+     <name>Twice</name>
+     <company>JYP Entertainment</company>
+   </artist>
+   
+   <artist id="BP080816" debut="2016">
+    <name>Blackpink</name>
+    <company>YG entertainment</company>
+  </artist>
+  
+  <artist id="SM280813" debut="2013">
+    <name>Lee Sunmi</name>
+    <company>WG entertainment</company>
+  </artist>
+  <artist id="KH040111" debut="2011">
+    <name>Kim Hyuna</name>
+    <company>P entertainment</company>
+  </artist>
+  
+  <artist id="CY040111" debut="2019">
+    <name>Lee Chaeyeon</name> 
+  </artist>
+</artists>
+
+
+<albums>
+  <album artistid="TW201015" name="Feel Special">
+    <songs>
+      <song name="Feel Special">
+        <time>180</time>
+        <language>Korean</language>
+        <genre>K-pop</genre>
+      </song>
+      <song name="Breakthrough">
+        <time>170</time>
+        <language>Japanese</language>
+        <genre>J-pop</genre>
+      </song>
+    </songs>
+    <release>2019-09-23</release>
+    <cover>/covers/tw_feel_special.jpg</cover>
+  </album>
+  
+  
+  <album artistid="SM280813" name="Warning">
+    <songs>
+      <song name="Siren">
+        <time>190</time>
+        <language>Korean</language>
+        <genre>Retro</genre>
+      </song>
+      <song name="Addict">
+        <time>160</time>
+        <language>English</language>
+        <genre>Contemporary</genre>
+      </song>
+    </songs>
+    <release>2013-09-04</release>
+    <cover>/covers/sm_warning.jpg</cover>
+  </album>
+  
+  <album artistid="BP080816">
+    <song name="Kick It">
+      <time>190</time>
+      <language>Korean</language>
+      <genre>Hip hop</genre>
+    </song>
+    <release>2017-09-04</release>
+  </album>
+  
+  <album artistid="BP080816" name="Kill This Love">
+    <songs>
+      <song name="Boombayah">
+        <time>185</time>
+        <language>English</language>
+        <genre>EDM</genre>
+      </song>
+      
+      <song name="As If It's Your Last">
+        <time>179</time>
+        <language>Korean</language>
+        <genre>EDM</genre>
+      </song> 
+    </songs>
+    <release>2016-07-05</release> 
+    <cover>/covers/bp_kill_this_love.png</cover>
+  </album>
+  
+  <album artistid="KH040111" name="Red">
+    <songs>
+      <song name="Roll Deep">
+        <features>
+          <artist id="SM280813"></artist>
+        </features>
+        <time>195</time>
+        <language>Korean</language>
+        <genre>Pop</genre>
+      </song>
+      
+      <song name="Lips and Hips">
+        <time>179</time>
+        <language>Korean</language>
+        <genre>Dance</genre>
+      </song>
+    </songs>
+    <release>2015-07-05</release>
+    <cover>/covers/kh_red.png</cover>  
+  </album>
+  
+  <album artistid="SM280813">
+    <song name="Lalalay">
+      <time>190</time>
+      <language>Korean</language>
+      <genre>Electro-pop</genre>
+    </song>
+    <release>2018-09-05</release>
+  </album>
+  
+  
+</albums>
+</hanify>

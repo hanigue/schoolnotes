@@ -1,0 +1,13 @@
+# Vybrat vsechny artists (unikatni), kteri maji single album (alba, ktera maji jen 1 pisnicku a nemaji jmeno).
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX s: <http://hanify.cz/schema#>
+
+SELECT distinct ?a ?f ?l ?n
+WHERE {
+?a rdf:type s:Artist;
+   s:name ?n;
+OPTIONAL { ?n s:first ?f. ?n s:last ?l. }.
+?b s:from ?a.
+  FILTER NOT EXISTS { ?b s:name ?bname }
+}

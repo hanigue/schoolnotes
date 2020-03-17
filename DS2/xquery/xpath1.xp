@@ -1,0 +1,2 @@
+(:Jmena umelcu v textove forme, kteri vydali album v roce 2018 a pozdeji.:)
+//artist[@id=//album[release>="2018-01-01"]/data(@artistid)]/name/text()

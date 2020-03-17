@@ -1,0 +1,3 @@
+(:Pisnicka z posledniho single alba (album, ktere ma pouze 1 pisnicku):)
+
+(//album/song)[last()]

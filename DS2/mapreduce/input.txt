@@ -1,0 +1,12 @@
+Sunmi;24 hours;contemporary,pop;3:15;producers;Sunmi/Yubin/Yeeun;lyrics;Sunmi/Yubin
+Sunmi;Gashina;dance,pop;3:05;producers;Sunmi/Brave Brothers;lyrics;Sunmi
+Sunmi;Noir;contemporary;3:25;producers;Sunmi/Yeeun;lyrics;Sunmi
+Chungha;Roller Coaster;EDM,hip hop;3:07;producers;Park Jin Young;lyrics;Park Jin Young/Lee So Min
+Chungha;Snapping;hip hop,RNB;2:55;producers;Chae Sung;lyrics;Chungha
+Itzy;Icy;dance,funk;3:15;producers;JYP;lyrics;Shin Ryujin
+Itzy;Dalla dalla;funk,EDM;3:32;producers;JYP;lyrics;Anh Sohee/Shin Ryujin
+Itzy;Cherry;hip hop,dance;3:15;producers;Tiger Woo;lyrics;Park Yenny
+Heize;And July;RNB,rap;4:15;producers;Dean/AOMG;lyrics;Heize
+Heize;Groove;RNB;4:12;producers;Brave Brothers;lyrics;Heize/Dean
+Yubin;Back;hip hop;3:32;producers;Yubin;lyrics;Yubin
+Yubin;Lady;hip hop,rap;3:31;producers;Jay Park;lyrics;Yubin

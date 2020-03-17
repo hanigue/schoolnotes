@@ -1,0 +1,12 @@
+# Vyfiltrovat vsechny pisnicky, u kterych zanr neni zadny 'pop'
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX s: <http://hanify.cz/schema#>
+
+SELECT ?n ?g
+WHERE {
+?song rdf:type s:Song;
+   s:name ?n.
+   ?song s:genre ?g;
+   FILTER (!regex(?g, ".*[p|P]op.*")) 
+}

@@ -1,0 +1,15 @@
+# Vyfiltrovani vsech alb, ktera obsahuji EDM pisnicky (single alba jsou ta, ktera obsahuji pouze 1 pisnicku a nemaji jmeno). 
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX s: <http://hanify.cz/schema#>
+
+SELECT ?b ?n
+WHERE {
+?b rdf:type s:Album.
+OPTIONAL {?b s:name ?n}
+MINUS{
+  ?song s:contain ?b; 
+  		s:genre ?g.
+  FILTER (?g="EDM")
+  }
+}

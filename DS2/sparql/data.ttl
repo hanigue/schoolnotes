@@ -1,0 +1,148 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix s: <http://hanify.cz/schema#> .
+@prefix d: <http://hanify.cz/> .
+
+d:artist1
+  rdf:type s:Artist;
+  s:name "Twice";
+  s:company "JYP Entertainment";
+  s:debut "2015" .
+
+d:artist2
+  rdf:type s:Artist;
+  s:name "Blackpink";
+  s:company "YG Entertainment";
+  s:debut "2016" .
+
+d:artist3
+  rdf:type s:Artist;
+  s:name[s:last "Lee"; s:first "Sunmi"];
+  s:company "WG Entertainment";
+  s:debut "2013" .
+
+d:artist4
+  rdf:type s:Artist;
+  s:name[s:last "Kim"; s:first "Hyuna"];
+  s:company "P Entertainment";
+  s:debut "2011" .
+
+d:artist5
+  rdf:type s:Artist;
+  s:name[s:last "Lee"; s:first "Chaeyeon"];
+  s:debut "2019" .
+
+d:album1
+  rdf:type s:Album;
+  s:name "Feel Special";
+  s:release "2019-09-23";
+  s:from d:artist1.
+
+d:song11
+  rdf:type s:Song;
+  s:name "Feel Special";
+  s:time "180";
+  s:language "Korean";
+  s:genre "K-pop";
+  s:contain d:album1.
+
+d:song12
+  rdf:type s:Song;
+  s:name "Breakthrough";
+  s:time "170";
+  s:language "Japanese";
+  s:genre "J-pop";
+  s:contain d:album1.
+
+d:album2
+  rdf:type s:Album;
+  s:name "Warning";
+  s:release "2013-09-04";
+  s:from d:artist3.
+
+d:song21
+  rdf:type s:Song;
+  s:name "Siren";
+  s:time "190";
+  s:language "Korean";
+  s:genre "Retro";
+  s:contain d:album2.
+
+d:song22
+  rdf:type s:Song;
+  s:name "Addict";
+  s:time "160";
+  s:language "English";
+  s:genre "Contemporary";
+  s:contain d:album2.
+
+d:album3
+  rdf:type s:Album;
+  s:release "2017-09-04";
+  s:from d:artist2.
+
+d:song31
+  rdf:type s:Song;
+  s:name "Kick It";
+  s:time "190";
+  s:language "Korean";
+  s:genre "Hip hop";
+  s:contain d:album3.
+
+d:album4
+  rdf:type s:Album; 
+  s:name "Kill This Love";
+  s:release "2016-07-05";
+  s:from d:artist3.
+
+d:song41
+  rdf:type s:Song;
+  s:name "Boombayah";
+  s:time "185";
+  s:language "English";
+  s:genre "EDM";
+  s:contain d:album4.
+
+d:song42
+  rdf:type s:Song;
+  s:name "As If It's Your Last";
+  s:time "179";
+  s:language "Korean";
+  s:genre "EDM";
+  s:contain d:album4.
+
+d:album5
+  rdf:type s:Album;
+  s:name "Red";
+  s:release "2015-07-05";
+  s:from d:artist4.
+
+d:song51
+  rdf:type s:Song;
+  s:name "Roll Deep";
+  s:time "195";
+  s:feature d:artist3;
+  s:language "Korean";
+  s:genre "Pop";
+  s:contain d:album5.
+
+d:song52
+  rdf:type s:Song;
+  s:name "Lips and Hips";
+  s:time "179";
+  s:language "Korean";
+  s:genre "Dance";
+  s:contain d:album5.
+
+d:album6
+  rdf:type s:Album;
+  s:release "2018-09-05";
+  s:from d:artist3.
+
+d:song61
+  rdf:type s:Song;
+  s:name "Lalalay";
+  s:time "190";
+  s:language "Korean";
+  s:genre "Electro-pop";
+  s:contain d:album6.
+

@@ -1,0 +1,45 @@
+ECHO "The intended context is 'General statistics about an artist'. 'UserCount' is a number of people listening to the artist, 'SongCount'/'AlbumCount' are numbers of all-over songs/albums. 'Likes' is how many times users have hit a 'like' button (suppose there is one). In the end, our fictional company decided to get rid of 'Likes' because it wants to be original."     
+SET "UserCount" "5"
+SET "LikesCount" "403"
+SET "SongCount" "24"
+SET "AlbumCount" "12"
+SET "AvgUserAge" "16"
+INCR "UserCount"
+GET "UserCount"
+DEL "Likes"
+
+ECHO "Artists and names of their songs. Artists are represented by their unique identifiers 'lastnamefirstname_debutdate'. First artist leechaeyeon_09122015 has an empty string as a song - serves as simulation of application failure from the input side. Artist leesunmi_07042007 has a typo in her song which is removed and returned. LRANGE was used to access all artist kimchungha_2302016 's songs. "
+LPUSH leechaeyeon_09122015 " "
+LPUSH kimchungha_2302016 "Gotta Go"
+LPUSH kimchungha_2302016 "Uh Oh"
+LPUSH leesunmi_07042007 "Adduct"
+LPUSH leesunmi_07042007 "Noir"
+LRANGE kimchungha_2302016 0 -1
+RPOP leesunmi_07042007
+LREM leechaeyeon_09122015 1 " " 
+
+ECHO "The context is Users and admins. Three users are inserted into a set 'users' and two of those existing users are made admins. Usernames are chosen arbitrarily, SDIFF is meant to find users that are not admins for deletion."
+SADD users pizzaG_33
+SADD users koblizekcz98
+SADD users paddimir60
+SADD admins koblizekcz98
+SADD admins pizzaG_33
+SISMEMBER admins pizzaG_33
+SDIFF users admins 
+SREM users paddimir60
+
+ECHO "Songs are represented by a unique identifier this time in a form 'ArtistInitialsDebutDate_songname'. Numbers[field] represent the popularity of those songs. ZRANGE is used to access songs with popularity 1 - 7, ZINCRBY to increment MM29032011_egoistics score (is less popular) and ZREM to delete MM29032011_egoistic due to its low place." 
+ZADD songs 1 KC2302016_gottago
+ZADD songs 5 IZ01012014_icy
+ZADD songs 6 GI1232017_fire
+ZADD songs 16 AOA23032013_excuseme
+ZADD songs 20 MM29032011_egoistic
+ZRANGEBYSCORE songs 1 7
+ZINCRBY songs 1 MM29032011_egoistic
+ZREM songs MM29032011_egoistic
+
+ECHO "The context is song and their categories(mood of the song). Songs are represented in the same form as above. Song category follows in double brackets."
+HMSET songCategory BP20012016_boombayah "Dance,Power" BP20012016_killthislove "Love,Dance" SM07042007_lalalay "Contemporary,Girl crush" KC2302016_snapping "Dance,Party" KC2302016_why "Summer"
+HVALS songCategory
+HGET songCategory BP20012016_boombayah 
+HDEL songCategory BP20012016_boombayah  
